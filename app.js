@@ -5,6 +5,7 @@ const auth = require('./routes/auth');
 const users = require('./routes/users');
 const home = require('./routes/home');
 
+const cors = require('cors');
 const config = require('config');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://localhost/testownik')
   .catch(err => console.error('Could not connect to MongoDB...'));
 
 app.use(express.json());
+app.use(cors())
 app.use('/', home);
 app.use('/users', users);
 app.use('/auth', auth);
