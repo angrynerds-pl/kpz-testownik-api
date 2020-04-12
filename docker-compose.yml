@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  api:
+    container_name: node-api
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+  web:
+    container_name: angular-web
+    restart: always
+    build: 
+      context: ../web/kpz-testownik
+      dockerfile: ./Dockerfile
+    ports:
+      - "4200:4200"
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:

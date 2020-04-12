@@ -16,9 +16,9 @@ if(!config.get('jwtPrivateKey')){
     process.exit(1);
 }
 
-mongoose.connect('mongodb://localhost/testownik')
+mongoose.connect('mongodb://mongo:27017/testownik', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...'));
+  .catch(err => console.error('Could not connect to MongoDB...', err));
 
 app.use(express.json());
 app.use(cors())
