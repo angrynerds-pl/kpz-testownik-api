@@ -13,4 +13,4 @@ Run `nodemon app.js` for a dev server. By default server is listening on port nu
 if not set server will be listening on port `8080`.
 
 ## Databbase
-Project uses document-oriented database `mongoDB`. After start application conects to `mongodb://localhost/testownik` database. 
+Project uses document-oriented database `mongoDB`. After start application conects to `mongodb://testwonik_db_host/testownik` database. Before start you need to specify env variable `testownik_db_host`.

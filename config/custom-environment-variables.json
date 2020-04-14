@@ -1,3 +1,4 @@
 {
-    "jwtPrivateKey": "testownik_jwtPrivateKey"
+    "jwtPrivateKey": "testownik_jwtPrivateKey",
+    "db_host": "testownik_db_host"
 }
