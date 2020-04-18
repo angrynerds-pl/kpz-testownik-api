@@ -12,21 +12,34 @@ const quizResultSchema = new mongoose.Schema({
         maxlength: 100,
         required: true,
     },
-    time: Number,
-    singleQuestionRepeat: Number,
-    wrongAnswers: Number,
-    correctAnswers: Number
+    time: {
+        type: Number,
+        required: true
+    },
+    singleQuestionRepeat: {
+        type: Number,
+        required: true
+    },
+    wrongAnswers: {
+        type: Number,
+        required: true
+    },
+    correctAnswers: {
+        type: Number,
+        required: true
+    } 
 });
 
 const Result = mongoose.model('Result', quizResultSchema);
 
 function validateResult(result){
     const schema = {
+        userId: Joi.required(),
         quizName: Joi.string().min(1).max(100).required(),
-        time: Joi.number(),
-        wrongAnswers: Joi.number(),
-        correctAnswers: Joi.number(),
-        userId: Joi.ObjectId()
+        time: Joi.number().required(),
+        singleQuestionRepeat: Joi.number().required(),
+        wrongAnswers: Joi.number().required(),
+        correctAnswers: Joi.number().required()
     }
 
     return Joi.validate(result, schema);
