@@ -34,7 +34,6 @@ const Result = mongoose.model('Result', quizResultSchema);
 
 function validateResult(result){
     const schema = {
-        userId: Joi.required(),
         quizName: Joi.string().min(1).max(100).required(),
         time: Joi.number().required(),
         singleQuestionRepeat: Joi.number().required(),
