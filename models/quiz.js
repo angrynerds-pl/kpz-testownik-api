@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const timeZone = require('mongoose-timezone');
 
 const quizResultSchema = new mongoose.Schema({
     userId: {
@@ -27,9 +28,15 @@ const quizResultSchema = new mongoose.Schema({
     correctAnswers: {
         type: Number,
         required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+        timezone: 'Europe/Warsaw'
     } 
 });
 
+quizResultSchema.plugin(timeZone, { paths: ['date', 'subDocument.subDate']});
 const Result = mongoose.model('Result', quizResultSchema);
 
 function validateResult(result){
@@ -38,7 +45,8 @@ function validateResult(result){
         time: Joi.number().required(),
         singleQuestionRepeat: Joi.number().required(),
         wrongAnswers: Joi.number().required(),
-        correctAnswers: Joi.number().required()
+        correctAnswers: Joi.number().required(),
+        date: Joi.date()
     }
 
     return Joi.validate(result, schema);

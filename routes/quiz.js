@@ -17,7 +17,8 @@ router.post('/result', auth, async (req, res) => {
         time: req.body.time,
         singleQuestionRepeat: req.body.singleQuestionRepeat,
         wrongAnswers: req.body.wrongAnswers,
-        correctAnswers: req.body.correctAnswers
+        correctAnswers: req.body.correctAnswers,
+        date: req.body.date
     });
 
     await result.save();
