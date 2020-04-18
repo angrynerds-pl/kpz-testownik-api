@@ -21,6 +21,10 @@ const quizResultSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    numberOfQuestions: {
+        type: Number,
+        required: true
+    },
     wrongAnswers: {
         type: Number,
         required: true
@@ -44,6 +48,7 @@ function validateResult(result){
         quizName: Joi.string().min(1).max(100).required(),
         time: Joi.number().required(),
         singleQuestionRepeat: Joi.number().required(),
+        numberOfQuestions: Joi.number().required(),
         wrongAnswers: Joi.number().required(),
         correctAnswers: Joi.number().required(),
         date: Joi.date()

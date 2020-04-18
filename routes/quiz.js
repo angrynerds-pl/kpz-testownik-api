@@ -16,6 +16,7 @@ router.post('/result', auth, async (req, res) => {
         quizName: req.body.quizName,
         time: req.body.time,
         singleQuestionRepeat: req.body.singleQuestionRepeat,
+        numberOfQuestions: req.body.numberOfQuestions,
         wrongAnswers: req.body.wrongAnswers,
         correctAnswers: req.body.correctAnswers,
         date: req.body.date
