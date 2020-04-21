@@ -4,7 +4,8 @@ Joi.objectId = require('joi-objectid')(Joi);
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 const home = require('./routes/home');
-const connection = require('./connection');
+const quiz = require('./routes/quiz');
+const connection = require('./db');
 
 const cors = require('cors');
 const config = require('config');
@@ -23,8 +24,9 @@ app.use(cors())
 app.use('/', home);
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/quiz', quiz);
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
 });
