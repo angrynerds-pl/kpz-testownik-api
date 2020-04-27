@@ -2,8 +2,12 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 
 module.exports = function (req, res, next) {
-    const token = req.header('Authorization');
+    let token = req.header('Authorization');
     if(!token) return res.status(401).send('Access denied. No token provided.');
+
+    if(token.startsWith('Bearer ')){
+        token = token.slice(7, token.length);
+    };
 
     try{
         const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
