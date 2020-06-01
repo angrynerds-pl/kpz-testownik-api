@@ -12,6 +12,29 @@ const config = require('config');
 const express = require('express');
 const app = express();
 
+//swagger
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+// Extended: https://swagger.io/specification/#infoObject
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            title: 'Angry Nerds Testownik API',
+            description: 'API dla testownika działającego na plikach JSON',
+            // contact: {
+            //     "name": "Filip Gajewski, współtwórca API",
+            //     "email": "filipgajewski4@gmail.com"
+            // },
+            servers: ["http://localhost:8080"]
+        }
+    },
+    apis: ['./routes/*.js']
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 if(!config.get('jwtPrivateKey')){
     console.log('FATAL ERROR: jwtPrivateKey is not defined.');
     process.exit(1);
