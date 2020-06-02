@@ -22,6 +22,7 @@ const swaggerOptions = {
         info: {
             title: 'Angry Nerds Testownik API',
             description: 'API dla testownika działającego na plikach JSON',
+            version: '1.0',
             // contact: {
             //     "name": "Filip Gajewski, współtwórca API",
             //     "email": "filipgajewski4@gmail.com"

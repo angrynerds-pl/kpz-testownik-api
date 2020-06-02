@@ -5,11 +5,28 @@ const {User, validate} = require('../models/user');
 const express = require('express');
 const router = express.Router();
 
+/**
+ * @swagger
+ *  /me:
+ *      get:
+ *          description: Use to login a user
+ *          tags:
+ *              - users
+ */
 router.get('/me', auth, async (req, res) =>{
     const user = await User.findById(req.user._id).select('-password');
     res.send(user);
 });
 
+
+/**
+ * @swagger
+ *  asd/:
+ *      post:
+ *          description: sgsdgdgdsggsgesdgsgsdf
+ *          tags:
+ *              - users
+ */
 router.post('/', async (req, res) => {
     const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);

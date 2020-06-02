@@ -6,6 +6,33 @@ const {User} = require('../models/user');
 const express = require('express');
 const router = express.Router();
 
+/**
+ * @swagger
+ *  /auth/:
+ *      post:
+ *          description: Use to login a user. Request body has to contain neccessery parameters.
+ *          parameters:
+ *              - in: body
+ *                name: User's credentials
+ *                description: To log in the user.
+ *                schema:
+ *                  type: object
+ *                  required:
+ *                      - username
+ *                      - password
+ *                  properties:
+ *                      username:
+ *                          type: string
+ *                      password:
+ *                          type: string      
+ *          tags:
+ *              - auth
+ *          responses:
+ *              400:
+ *                  description: It's returned in two cases. There was a validation error with request body or user pass invalid username or password
+ *              200:
+ *                  description: Returns JWT token with _id and username
+ */
 router.post('/', async (req, res) => {
     const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);

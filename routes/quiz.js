@@ -6,6 +6,14 @@ const router = express.Router();
 const User = require('../models/user').User;
 const {Result, validate} = require('../models/quiz');
 
+/**
+ * @swagger
+ *  /result:
+ *      post:
+ *          description: Use to login a user
+ *          tags:
+ *              - quiz
+ */
 router.post('/result', auth, async (req, res) => {
 
     const {error} = validate(req.body)
@@ -27,8 +35,14 @@ router.post('/result', auth, async (req, res) => {
     res.send(_.pick(result, ['_id']));
 });
 
-
-
+/**
+ * @swagger
+ *  /result:
+ *      get:
+ *          description: Use to login a user
+ *          tags:
+ *              - quiz
+ */
 router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://localhost:8080/quiz/id/5eb8612d63c7f658d8aa66a3
     try{
         const selectedResult = await Result.findOne({ _id: req.params.id , userId: req.user._id });
@@ -41,6 +55,14 @@ router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://
     
 });
 
+/**
+ * @swagger
+ *  /enrolled:
+ *      get:
+ *          description: Use to login a user
+ *          tags:
+ *              - quiz
+ */
 router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wszystkich podejsc
     try{
         var allQuizes = await (Result.find({userId: req.user._id})); 
@@ -57,7 +79,14 @@ router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wsz
 
 });
 
-
+/**
+ * @swagger
+ *  /stats:
+ *      get:
+ *          description: Use to login a user
+ *          tags:
+ *              - quiz
+ */
 router.get('/stats/:quizName', auth, async (req, res) => {//Jak zdefiniowac ten route? zwraca podejscia z kursów
     try{
         var allQuizes = await (Result.find({quizName: req.params.quizName ,userId: req.user._id})); 
