@@ -7,11 +7,25 @@ const router = express.Router();
 
 /**
  * @swagger
- *  /me:
+ *  /users/me:
  *      get:
- *          description: Use to login a user
+ *          description: Use to decode from Authorization token, send in header users _id and username.
+ *          security:
+ *              - bearerAuth: []
+ *          parameters:
+ *              - in: header
+ *                name: Authorization
+ *                type: string
+ *                required: true
  *          tags:
  *              - users
+ *          responses:
+ *              200:
+ *                  description: Returns JSON body with user's _id and username decoded from jwt token.
+ *              400:
+ *                  description: Token in header was invalid.
+ *              401:
+ *                  description: No token was provided. 
  */
 router.get('/me', auth, async (req, res) =>{
     const user = await User.findById(req.user._id).select('-password');
