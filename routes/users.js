@@ -35,11 +35,30 @@ router.get('/me', auth, async (req, res) =>{
 
 /**
  * @swagger
- *  asd/:
+ *  /users/:
  *      post:
- *          description: sgsdgdgdsggsgesdgsgsdf
+ *          description: Register a new user in database with his username and password.
+ *          parameters:
+ *              - in: body
+ *                name: User's credentials.
+ *                description: Try to register a new user with this parameters. Username is string between 5 and 50 charachters. Password is string between 5 and 255 characters.
+ *                schema:
+ *                  type: object
+ *                  required:
+ *                      - username
+ *                      - password
+ *                  properties:
+ *                      username:
+ *                          type: string
+ *                      password:
+ *                          type: string  
  *          tags:
  *              - users
+ *          responses:
+ *              200:
+ *                  description: New user was successfuly registered
+ *              400:
+ *                  description: Problem with new user parameters. Either there was a problem in request body or user with one of these parameters already exists.
  */
 router.post('/', async (req, res) => {
     const { error } = validate(req.body);

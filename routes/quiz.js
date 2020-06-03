@@ -8,11 +8,49 @@ const {Result, validate} = require('../models/quiz');
 
 /**
  * @swagger
- *  /result:
+ *  /quiz/result/:
  *      post:
- *          description: Use to login a user
+ *          description: Use to save user's result after complete a quiz.
+ *          parameters:
+ *              - in: header
+ *                name: Authorization
+ *                description: User's JWT token.
+ *                type: string
+ *                required: true
+ *              - in: body
+ *                name: Quiz result.
+ *                description: "Quiz result consits of 6 required parameters and optional quiz resolved date.\nQuiz name is a string between 1 and 100 characters.\nTime, singleQuestionRepeat, numberOfQuestions, wrongAnswers and correctAnswers are int.\nIf date is no provided the API uses current datetime."
+ *                schema:
+ *                  type: object
+ *                  required:
+ *                      - quizName
+ *                      - time
+ *                      - singleQuestionRepeat
+ *                      - numberOfQuestions
+ *                      - wrongAnswers
+ *                      - correctAnswers
+ *                  properties:
+ *                      quizName:
+ *                          type: string  
+ *                      time:
+ *                          type: number  
+ *                      singleQuestionRepeat:
+ *                          type: number  
+ *                      numberOfQuestions:
+ *                          type: number  
+ *                      wrongAnswers:
+ *                          type: number  
+ *                      correctAnswers:
+ *                          type: integer  
+ *                      date:
+ *                          type: string  
  *          tags:
  *              - quiz
+ *          responses:
+ *              200:
+ *                  description: Quiz result was successfuly saved in the database.
+ *              400:
+ *                  description: Either token or request body was invalid. 
  */
 router.post('/result', auth, async (req, res) => {
 
@@ -37,7 +75,7 @@ router.post('/result', auth, async (req, res) => {
 
 /**
  * @swagger
- *  /result:
+ *  /quiz/id/{:id}:
  *      get:
  *          description: Use to login a user
  *          tags:
@@ -57,7 +95,7 @@ router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://
 
 /**
  * @swagger
- *  /enrolled:
+ *  /quiz/enrolled/:
  *      get:
  *          description: Use to login a user
  *          tags:
@@ -81,7 +119,7 @@ router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wsz
 
 /**
  * @swagger
- *  /stats:
+ *  /quiz/stats/{:quizName}:
  *      get:
  *          description: Use to login a user
  *          tags:

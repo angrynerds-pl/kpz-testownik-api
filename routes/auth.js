@@ -13,8 +13,8 @@ const router = express.Router();
  *          description: Use to login a user. Request body has to contain neccessery parameters.
  *          parameters:
  *              - in: body
- *                name: User's credentials
- *                description: To log in the user.
+ *                name: User's credentials.
+ *                description: Username is string between 5 and 50 charachters. Password is string between 5 and 255 characters
  *                schema:
  *                  type: object
  *                  required:
@@ -28,10 +28,10 @@ const router = express.Router();
  *          tags:
  *              - auth
  *          responses:
- *              400:
- *                  description: It's returned in two cases. There was a validation error with request body or user pass invalid username or password
  *              200:
  *                  description: Returns JWT token with _id and username
+ *              400:
+ *                  description: It's returned in two cases. There was a validation error with request body or user pass invalid username or password
  */
 router.post('/', async (req, res) => {
     const { error } = validate(req.body);
