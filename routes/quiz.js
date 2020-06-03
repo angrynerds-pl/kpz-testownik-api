@@ -75,11 +75,29 @@ router.post('/result', auth, async (req, res) => {
 
 /**
  * @swagger
- *  /quiz/id/{:id}:
+ *  /quiz/id/{id}:
  *      get:
- *          description: Use to login a user
+ *          description: TODO
+ *          parameters:
+ *              - in: header
+ *                name: Authorization
+ *                description: User's JWT token.
+ *                type: string
+ *                required: true
+ *              - in: path
+ *                name: id
+ *                required: true
+ *                type: string
+ *                description: The quiz Id
  *          tags:
  *              - quiz
+ *          responses:
+ *              200:
+ *                  description: TODO
+ *              404:
+ *                  description: TODO
+ *              500:
+ *                  description: TODO
  */
 router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://localhost:8080/quiz/id/5eb8612d63c7f658d8aa66a3
     try{
@@ -97,9 +115,22 @@ router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://
  * @swagger
  *  /quiz/enrolled/:
  *      get:
- *          description: Use to login a user
+ *          description: TODO
+ *          parameters:
+ *              - in: header
+ *                name: Authorization
+ *                description: User's JWT token.
+ *                type: string
+ *                required: true
  *          tags:
  *              - quiz
+ *          responses:
+ *              200:
+ *                  description: TODO
+ *              404:
+ *                  description: TODO
+ *              500:
+ *                  description: TODO
  */
 router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wszystkich podejsc
     try{
@@ -119,11 +150,29 @@ router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wsz
 
 /**
  * @swagger
- *  /quiz/stats/{:quizName}:
+ *  /quiz/stats/{quizName}:
  *      get:
- *          description: Use to login a user
+ *          description: TODO
+ *          parameters:
+ *              - in: header
+ *                name: Authorization
+ *                description: User's JWT token.
+ *                type: string
+ *                required: true
+ *              - in: path
+ *                name: quizName
+ *                required: true
+ *                type: string
+ *                description: Quiz name.
  *          tags:
  *              - quiz
+ *          responses:
+ *              200:
+ *                  description: TODO
+ *              404:
+ *                  description: TODO
+ *              500:
+ *                  description: TODO
  */
 router.get('/stats/:quizName', auth, async (req, res) => {//Jak zdefiniowac ten route? zwraca podejscia z kursów
     try{
