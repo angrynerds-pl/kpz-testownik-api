@@ -77,7 +77,7 @@ router.post('/result', auth, async (req, res) => {
  * @swagger
  *  /quiz/id/{id}:
  *      get:
- *          description: TODO
+ *          description: Use to get name of quiz, for specified result id(result id), for authorized user.
  *          parameters:
  *              - in: header
  *                name: Authorization
@@ -88,16 +88,16 @@ router.post('/result', auth, async (req, res) => {
  *                name: id
  *                required: true
  *                type: string
- *                description: The quiz Id
+ *                description: The result Id.
  *          tags:
  *              - quiz
  *          responses:
  *              200:
- *                  description: TODO
+ *                  description: Evrything ok,\nquizName should occour in response.
  *              404:
- *                  description: TODO
+ *                  description: Either token or request body was invalid. Caueses: \nInvalid result ID \nInvalid user token
  *              500:
- *                  description: TODO
+ *                  description: Problem with connection to database.
  */
 router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://localhost:8080/quiz/id/5eb8612d63c7f658d8aa66a3
     try{
@@ -115,7 +115,7 @@ router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://
  * @swagger
  *  /quiz/enrolled/:
  *      get:
- *          description: TODO
+ *          description: Use to get all names of quizes specified user enrolled(did at least one quiz and saved result into database), for authorized user.
  *          parameters:
  *              - in: header
  *                name: Authorization
@@ -126,11 +126,11 @@ router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://
  *              - quiz
  *          responses:
  *              200:
- *                  description: TODO
+ *                  description: Returns json array with names of quizes in response.
  *              404:
- *                  description: TODO
+ *                  description: Either token or request body was invalid.Causes: \nInvalid ID\nInvalid user token
  *              500:
- *                  description: TODO
+ *                  description: Problem with connection to database.
  */
 router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wszystkich podejsc
     try{
@@ -152,7 +152,7 @@ router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wsz
  * @swagger
  *  /quiz/stats/{quizName}:
  *      get:
- *          description: TODO
+ *          description: Use to get results of all tries for selected quizName, for authorized user, for authorized user (results of all saved tries)
  *          parameters:
  *              - in: header
  *                name: Authorization
@@ -168,11 +168,11 @@ router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wsz
  *              - quiz
  *          responses:
  *              200:
- *                  description: TODO
+ *                  description: Returns json array of results
  *              404:
- *                  description: TODO
+ *                  description: Either token or request body was invalid.Causes: \nInvalid quizName \nInvalid user token
  *              500:
- *                  description: TODO
+ *                  description: Problem with connection to database.
  */
 router.get('/stats/:quizName', auth, async (req, res) => {//Jak zdefiniowac ten route? zwraca podejscia z kursów
     try{
