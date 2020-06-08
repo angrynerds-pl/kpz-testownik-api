@@ -93,9 +93,9 @@ router.post('/result', auth, async (req, res) => {
  *              - quiz
  *          responses:
  *              200:
- *                  description: Evrything ok,\nquizName should occour in response.
+ *                  description: "Everything ok,\n quizName should occour in response."
  *              404:
- *                  description: Either token or request body was invalid. Caueses: \nInvalid result ID \nInvalid user token
+ *                  description: "Either token or request body was invalid. Causes:\nInvalid result ID\nInvalid user token"
  *              500:
  *                  description: Problem with connection to database.
  */
@@ -128,7 +128,7 @@ router.get('/id/:id', auth, async (req, res) => {//quiz name via id e.g. http://
  *              200:
  *                  description: Returns json array with names of quizes in response.
  *              404:
- *                  description: Either token or request body was invalid.Causes: \nInvalid ID\nInvalid user token
+ *                  description: "Either token or request body was invalid. Causes:\nInvalid ID\nInvalid user token"
  *              500:
  *                  description: Problem with connection to database.
  */
@@ -170,7 +170,7 @@ router.get('/enrolled', auth, async (req, res) => {// Zwraca nazwy kursow ze wsz
  *              200:
  *                  description: Returns json array of results
  *              404:
- *                  description: Either token or request body was invalid.Causes: \nInvalid quizName \nInvalid user token
+ *                  description: "Either token or request body was invalid. Causes:\nInvalid quizName\nInvalid user token"
  *              500:
  *                  description: Problem with connection to database.
  */
